@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ubuntu-daemonset
+  labels:
+    app: ubuntu-daemonset
+spec:
+  selector:
+    matchLabels:
+      app: ds-ubuntu-pod
+  template:
+    metadata:
+      labels:
+        app: ds-ubuntu-pod
+    spec:
+      containers:
+      - image: ubuntu
+        name: daemonset
+        args:
+          - /bin/bash
+          - -c 
+          - sleep 1000
+        ports:
+        - containerPort: 80
+          name: ubuntu
+          protocol: TCP
+
